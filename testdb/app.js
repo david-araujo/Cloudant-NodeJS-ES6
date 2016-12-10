@@ -1,3 +1,5 @@
+/** @author: Thiago Lima @description: Testing Cloudant connection */
+
 const db = require('../db/db.js');
 
 let test = new Promise((resolve, reject) => {
