@@ -1,8 +1,12 @@
 /** @name: app.js @author: Thiago Lima @description: Testing Cloudant connection */
 
+/** @description: database require */
+
 const db = require('../db/db.js');
 
-let test = new Promise((resolve, reject) => {
+/** @name: getDocuments @parms: resolve, reject @description: query documents */
+
+let getDocuments = new Promise((resolve, reject) => {
 
     try {
 
@@ -34,7 +38,7 @@ let test = new Promise((resolve, reject) => {
 
 });
 
-test.then((res) => console.log('Data was successfully got: ', res))
+getDocuments.then((res) => console.log('Data was successfully got: ', res))
 .then(null, (err) => console.log('An error ocurred on resolving', err));
 
 db.list((err, body) => {
