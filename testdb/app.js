@@ -1,4 +1,4 @@
-/** @author: Thiago Lima @description: Testing Cloudant connection */
+/** @name: app.js @author: Thiago Lima @description: Testing Cloudant connection */
 
 const db = require('../db/db.js');
 
