@@ -43,17 +43,26 @@ getDocuments.then((res) => console.log('Data was successfully got: ', res))
 
 /** @name: getAllDocuments @param: resolve, reject @description: query documents */
 
-let getAllDocuments = new Promise((resolve, reject) => {
+try {
 
     db.list((err, body) => {
 
-        body.rows.forEach((data, position) => {
-            console.log('bringing all the data: ', position + ' - ' + data);
+        let query = body.rows.forEach((data, position) => {
+
+            Promise.resolve('Array Position: ' + position + ' Data Object ' + data)
+                .then((res) => console.log('Data was successfully got: ', res))
+                .then(null, (err) => console.log('An error ocurred on resolving', err));
+
         });
 
     });
 
-});
+} catch (err) {
+
+    console.log('An error occured on getting data', err);
+
+}
+
 
 /* Testing CURD operations */
 
