@@ -4,7 +4,7 @@
 
 const db = require('../db/db.js');
 
-/** @name: getDocuments @parms: resolve, reject @description: query documents */
+/** @name: getDocuments @params: resolve, reject @description: query documents */
 
 let getDocuments = new Promise((resolve, reject) => {
 
@@ -39,12 +39,18 @@ let getDocuments = new Promise((resolve, reject) => {
 });
 
 getDocuments.then((res) => console.log('Data was successfully got: ', res))
-.then(null, (err) => console.log('An error ocurred on resolving', err));
+    .then(null, (err) => console.log('An error ocurred on resolving', err));
 
-db.list((err, body) => {
+/** @name: getAllDocuments @params: resolve, reject @description: query documents */
 
-    body.rows.forEach((data, position) => {
-        console.log('bringing all the data: ', position + ' - ' + data);
+let getAllDocuments = new Promise((resolve, reject) => {
+
+    db.list((err, body) => {
+
+        body.rows.forEach((data, position) => {
+            console.log('bringing all the data: ', position + ' - ' + data);
+        });
+
     });
 
 });
