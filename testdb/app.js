@@ -42,7 +42,7 @@ db.list((err, body) => {
 
 });
 
-/* Testing operations for CRUD */
+/* Testing CURD operations */
 
 /*db.destroy('test', '1-6e4cb465d49c0368ac3946506d26335d', (err, body) => {
     console.log(body);
