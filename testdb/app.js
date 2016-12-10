@@ -32,7 +32,8 @@ let test = new Promise((resolve, reject) => {
 
 });
 
-test.then((res) => console.log('Data was successfully got: ', res));
+test.then((res) => console.log('Data was successfully got: ', res))
+.then(null, (err) => console.log('An error ocurred on resolving', err));
 
 db.list((err, body) => {
 
@@ -47,7 +48,6 @@ db.list((err, body) => {
 /*db.destroy('test', '1-6e4cb465d49c0368ac3946506d26335d', (err, body) => {
     console.log(body);
 });*/
-
 
 /*db.insert({ name: 'Thiago', email: 'thigo@email.com' }, 'user1', (err, body) => {
     try {
