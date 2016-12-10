@@ -1,0 +1,20 @@
+{
+  "name": "stores",
+  "version": "1.0.0",
+  "description": "Store manager client, responsable for settings, updates and queries",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "AngularJS",
+    "ES6",
+    "Cloudant",
+    "NoSQL"
+  ],
+  "author": "Thiago Lima",
+  "license": "ISC",
+  "dependencies": {
+    "cloudant": "^1.6.2"
+  }
+}
