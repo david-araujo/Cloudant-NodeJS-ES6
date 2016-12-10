@@ -41,7 +41,7 @@ let getDocuments = new Promise((resolve, reject) => {
 getDocuments.then((res) => console.log('Data was successfully got: ', res))
     .then(null, (err) => console.log('An error ocurred on resolving', err));
 
-/** @name: getAllDocuments @param: resolve, reject @description: query documents */
+/** @name: getAllDocuments @param: data, position @description: query documents */
 
 try {
 
