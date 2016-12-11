@@ -47,7 +47,7 @@ try {
 
     db.list((err, body) => {
 
-        let query = body.rows.forEach((data, position) => {
+        body.rows.forEach((data, position) => {
 
             Promise.resolve('Array Position: ' + position + ' Data Object ' + data)
                 .then((res) => console.log('Data was successfully got: ', res))
@@ -71,14 +71,14 @@ let destroyOne = new Promise((resolve, reject) => {
 
         let query_document = {
 
-            _id:'test2',
-            _rev:'1-9e8b28852f9791fa8245e29fe238258a'
+            _id: 'test2',
+            _rev: '1-9e8b28852f9791fa8245e29fe238258a'
 
         };
 
         db.destroy(query_document._id, query_document._rev, (err, body) => { resolve(body); });
 
-    } catch (err){
+    } catch (err) {
 
         console.log('An error occured on deleting data', err);
 
@@ -91,10 +91,25 @@ destroyOne.then((res) => console.log('Data was successfully deleted: ', res))
 
 /** @name: insertOne @param: resolve, reject @description: query documents */
 
-db.insert({ name: 'Thiago', email: 'thigo@email.com' }, 'user1', (err, body) => {
-    try {
-        console.log(body);
-    } catch (err) {
-        console.log('impossible to write a new collection', err);
-    }
+let insertOne = new Promise((resolve, reject) => {
+
+
+    db.insert({ name: 'Caio', email: 'caio@email.com' }, 'user4', (err, body) => {
+
+        try {
+
+            resolve(body);
+
+        } catch (err) {
+
+            console.log('impossible to write a new collection', err);
+
+        }
+
+    });
+
 });
+
+insertOne.then((res) => console.log('Data was successfully inserted: ', res))
+    .then(null, (err) => console.log('An error occured on resolving'));
+
