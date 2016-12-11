@@ -63,12 +63,32 @@ try {
 
 }
 
+/** @name: destroyOne @param: data, position @description: query documents */
 
-/* Testing CURD operations */
+let destroyOne = new Promise((resolve, reject) => {
 
-/*db.destroy('test', '1-6e4cb465d49c0368ac3946506d26335d', (err, body) => {
-    console.log(body);
-});*/
+    try {
+
+        let query_document = {
+
+            _id:'test2',
+            _rev:'1-9e8b28852f9791fa8245e29fe238258a'
+
+        };
+
+        db.destroy(query_document._id, query_document._rev, (err, body) => { resolve(body); });
+
+    } catch (err){
+
+        console.log('An error occured on deleting data', err);
+
+    }
+
+});
+
+destroyOne.then((res) => console.log('Data was successfully deleted: ', res))
+    .then(null, (err) => console.log('An error ocurred on resolving', err));
+
 
 /*db.insert({ name: 'Thiago', email: 'thigo@email.com' }, 'user1', (err, body) => {
     try {
