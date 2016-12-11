@@ -15,6 +15,7 @@
   "author": "Thiago Lima",
   "license": "ISC",
   "dependencies": {
-    "cloudant": "^1.6.2"
+    "cloudant": "^1.6.2",
+    "express": "^4.14.0"
   }
 }
