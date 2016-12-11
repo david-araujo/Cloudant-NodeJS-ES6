@@ -67,22 +67,26 @@ db.list((err, body) => {
 
 let destroyOne = new Promise((resolve, reject) => {
 
-    try {
+    let query_document = {
 
-        let query_document = {
+        _id: 'test2',
+        _rev: '1-9e8b28852f9791fa8245e29fe238258a'
 
-            _id: 'test2',
-            _rev: '1-9e8b28852f9791fa8245e29fe238258a'
+    };
 
-        };
+    db.destroy(query_document._id, query_document._rev, (err, body) => {
 
-        db.destroy(query_document._id, query_document._rev, (err, body) => { resolve(body); });
+        try {
 
-    } catch (err) {
+            resolve(body);
 
-        console.log('An error occured on deleting data', err);
+        } catch (err) {
 
-    }
+            console.log('An error occured on deleting data', err);
+
+        }
+
+    });
 
 });
 
