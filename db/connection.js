@@ -1,3 +1,5 @@
+/** @name: connection.js @author: Thiago Lima @description: Connection file */
+
 const Cloudant = require('cloudant');
 
 const connection = {
