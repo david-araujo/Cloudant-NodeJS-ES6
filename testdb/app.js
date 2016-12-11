@@ -1,58 +1,152 @@
+/** @name: app.js @author: Thiago Lima @description: Testing Cloudant connection */
+
+/** @description: database require */
+
 const db = require('../db/db.js');
 
-let test = new Promise((resolve, reject) => {
+/** @name: getDocuments @param: resolve, reject @description: query documents */
 
-    try {
+let getDocuments = new Promise((resolve, reject) => {
 
-        let query_document = {
+    let query_document = {
 
-            "selector": {
-                "_id": {
-                    "$gt": 0
-                }
-            },
-            "fields": [
-                "_id",
-                "crazy"
-            ],
-            "sort": [
-                {
-                    "_id": "asc"
-                }
-            ]
-        };
+        "selector": {
+            "_id": {
+                "$gt": 0
+            }
+        },
+        "fields": [
+            "_id",
+            "crazy"
+        ],
+        "sort": [
+            {
+                "_id": "asc"
+            }
+        ]
+    };
 
-        db.find(query_document, (err, data) => { resolve(data); });
+    db.find(query_document, (err, data) => {
 
-    } catch (err) {
+        try {
 
-        console.log('An error occured on getting data', err);
+            resolve(data);
 
-    }
+        } catch (err) {
 
-});
+            console.log('An error occured on getting data', err);
 
-test.then((res) => console.log('Data was successfully got: ', res));
+        }
 
-db.list((err, body) => {
-
-    body.rows.forEach((data, position) => {
-        console.log('bringing all the data: ', position + ' - ' + data);
     });
 
 });
 
-/* Testing CURD operations */
+getDocuments.then((res) => console.log('Data was successfully got: ', res))
+    .then(null, (err) => console.log('An error ocurred on resolving', err));
 
-/*db.destroy('test', '1-6e4cb465d49c0368ac3946506d26335d', (err, body) => {
-    console.log(body);
-});*/
+/** @name: getById @param: resolve, reject @description: query documents */
+
+let getById = new Promise((resolve, reject) => {
+
+    let query_document = {
+
+        _id: 'user1',
+        field: { 'email': 'thigo@email.com' }
+
+    };
+
+    db.get(query_document._id, query_document.field, (err, data) => {
+
+        try {
+
+            resolve(data);
+
+        } catch (err) {
+
+            console.log('An error occured on getting data', err);
+
+        }
+
+    });
+
+});
+
+getById.then((res) => console.log('Data was successfully got: ', res))
+    .then(null, (err) => console.log('An error ocurred on resolving', err));
+
+/** @name: getAllDocuments @param: data, position @description: query documents */
+
+db.list((err, body) => {
+
+    body.rows.forEach((data, position) => {
+
+        try {
+
+            Promise.resolve('Array Position: ' + position + ' Data Object ' + data)
+                .then((res) => console.log('Data was successfully got: ', res))
+                .then(null, (err) => console.log('An error ocurred on resolving', err));
+
+        } catch (err) {
+
+            console.log('An error occured on getting data', err);
+
+        }
+
+    });
+
+});
+
+/** @name: destroyOne @param: resolve, reject @description: query documents */
+
+let destroyOne = new Promise((resolve, reject) => {
+
+    let query_document = {
+
+        _id: 'test2',
+        _rev: '1-9e8b28852f9791fa8245e29fe238258a'
+
+    };
+
+    db.destroy(query_document._id, query_document._rev, (err, body) => {
+
+        try {
+
+            resolve(body);
+
+        } catch (err) {
+
+            console.log('An error occured on deleting data', err);
+
+        }
+
+    });
+
+});
+
+destroyOne.then((res) => console.log('Data was successfully deleted: ', res))
+    .then(null, (err) => console.log('An error ocurred on resolving', err));
+
+/** @name: insertOne @param: resolve, reject @description: query documents */
+
+let insertOne = new Promise((resolve, reject) => {
 
 
-/*db.insert({ name: 'Thiago', email: 'thigo@email.com' }, 'user1', (err, body) => {
-    try {
-        console.log(body);
-    } catch (err) {
-        console.log('impossible to write a new collection', err);
-    }
-});*/
+    db.insert({ name: 'Caio', email: 'caio@email.com' }, 'user4', (err, body) => {
+
+        try {
+
+            resolve(body);
+
+        } catch (err) {
+
+            console.log('impossible to write a new collection', err);
+
+        }
+
+    });
+
+});
+
+insertOne.then((res) => console.log('Data was successfully inserted: ', res))
+    .then(null, (err) => console.log('An error occured on resolving'));
