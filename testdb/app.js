@@ -49,7 +49,31 @@ getDocuments.then((res) => console.log('Data was successfully got: ', res))
 
 let getById = new Promise((resolve, reject) => {
 
+    let query_document = {
+
+        _id: 'user1',
+        field: { 'email': 'thigo@email.com' }
+
+    };
+
+    db.get(query_document._id, query_document.field, (err, data) => {
+
+        try {
+
+            resolve(data);
+
+        } catch (err) {
+
+            console.log('An error occured on getting data', err);
+
+        }
+
+    });
+
 });
+
+getById.then((res) => console.log('Data was successfully got: ', res))
+    .then(null, (err) => console.log('An error ocurred on resolving', err));
 
 /** @name: getAllDocuments @param: data, position @description: query documents */
 
@@ -126,4 +150,3 @@ let insertOne = new Promise((resolve, reject) => {
 
 insertOne.then((res) => console.log('Data was successfully inserted: ', res))
     .then(null, (err) => console.log('An error occured on resolving'));
-
