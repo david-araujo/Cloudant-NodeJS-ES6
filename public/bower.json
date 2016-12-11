@@ -1,0 +1,19 @@
+{
+  "name": "stores",
+  "description": "Store manager client, responsable for settings, updates and queries",
+  "main": "index.js",
+  "authors": [
+    "Thiago Lima"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "AngularJS",
+    "ES6",
+    "Cloudant",
+    "NoSQL"
+  ],
+  "homepage": "",
+  "dependencies": {
+    "angular": "1.6.0"
+  }
+}
