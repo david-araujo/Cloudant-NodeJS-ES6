@@ -26,20 +26,30 @@ let getDocuments = new Promise((resolve, reject) => {
         ]
     };
 
-    try {
+    db.find(query_document, (err, data) => {
 
-        db.find(query_document, (err, data) => { resolve(data); });
+        try {
 
-    } catch (err) {
+            resolve(data);
 
-        console.log('An error occured on getting data', err);
+        } catch (err) {
 
-    }
+            console.log('An error occured on getting data', err);
+
+        }
+
+    });
 
 });
 
 getDocuments.then((res) => console.log('Data was successfully got: ', res))
     .then(null, (err) => console.log('An error ocurred on resolving', err));
+
+/** @name: getById @param: resolve, reject @description: query documents */
+
+let getById = new Promise((resolve, reject) => {
+
+});
 
 /** @name: getAllDocuments @param: data, position @description: query documents */
 
