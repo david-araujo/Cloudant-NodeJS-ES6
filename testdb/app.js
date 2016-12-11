@@ -63,7 +63,7 @@ try {
 
 }
 
-/** @name: destroyOne @param: data, position @description: query documents */
+/** @name: destroyOne @param: resolve, reject @description: query documents */
 
 let destroyOne = new Promise((resolve, reject) => {
 
@@ -89,11 +89,12 @@ let destroyOne = new Promise((resolve, reject) => {
 destroyOne.then((res) => console.log('Data was successfully deleted: ', res))
     .then(null, (err) => console.log('An error ocurred on resolving', err));
 
+/** @name: insertOne @param: resolve, reject @description: query documents */
 
-/*db.insert({ name: 'Thiago', email: 'thigo@email.com' }, 'user1', (err, body) => {
+db.insert({ name: 'Thiago', email: 'thigo@email.com' }, 'user1', (err, body) => {
     try {
         console.log(body);
     } catch (err) {
         console.log('impossible to write a new collection', err);
     }
-});*/
+});
