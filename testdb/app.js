@@ -8,25 +8,25 @@ const db = require('../db/db.js');
 
 let getDocuments = new Promise((resolve, reject) => {
 
+    let query_document = {
+
+        "selector": {
+            "_id": {
+                "$gt": 0
+            }
+        },
+        "fields": [
+            "_id",
+            "crazy"
+        ],
+        "sort": [
+            {
+                "_id": "asc"
+            }
+        ]
+    };
+
     try {
-
-        let query_document = {
-
-            "selector": {
-                "_id": {
-                    "$gt": 0
-                }
-            },
-            "fields": [
-                "_id",
-                "crazy"
-            ],
-            "sort": [
-                {
-                    "_id": "asc"
-                }
-            ]
-        };
 
         db.find(query_document, (err, data) => { resolve(data); });
 
